@@ -95,6 +95,28 @@
       color: #00ff66;
       font-weight: bold;
     }
+    @media (max-width: 768px), (orientation: portrait) {
+      .hud-overlay { top: 16px; left: 16px; right: 16px; }
+      .hud-badge { font-size: 10px; padding: 4px 10px; }
+      .hud-title { font-size: clamp(20px, 6vw, 26px); }
+      .hud-subtitle { font-size: clamp(10px, 3.5vw, 12px); }
+      .controls {
+        bottom: 50px;
+        left: 16px;
+        right: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      button { padding: 8px 12px; font-size: 11px; }
+      .brand-tag {
+        bottom: 14px;
+        left: 16px;
+        right: 16px;
+        text-align: center;
+        font-size: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -145,7 +167,6 @@
     }
     initColumns();
 
-    // Mouse interaction
     let mouse = { x: -1000, y: -1000, radius: 120 };
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
@@ -159,7 +180,6 @@
     }
 
     function render() {
-      // Semi-transparent fade background
       ctx.fillStyle = 'rgba(3, 7, 18, 0.08)';
       ctx.fillRect(0, 0, width, height);
 
@@ -172,7 +192,6 @@
 
         const char = characters[Math.floor(Math.random() * characters.length)];
 
-        // Distance from cursor
         const dx = mouse.x - x;
         const dy = mouse.y - y;
         const dist = Math.sqrt(dx * dx + dy * dy);
